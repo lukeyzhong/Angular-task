@@ -1,12 +1,15 @@
 <div class="dialog-container">
     <div>
-        <!-- <p>Do you want to select{{selectedPokemon.name}}</p> -->
+        <p>Do you want to select {{data.name}}</p>
+        <div class="img-container">
+            <img src="{{data.sprites.other['official-artwork'].front_default}}" alt="image">
+        </div>
     </div>
 
     <button (click)="noChoose()">
-        Close
+        NO
     </button>
-    <button (click)="choose(selectedPokemon)">
-        Open
+    <button (click)="choose(data)">
+        YES
     </button>
 </div>

@@ -1,24 +1,19 @@
-<div class="card-panel">
-    <mat-card *ngFor="let pokemon of pokemonlist" class="card-content" (click)="showDialog()">
+<mat-card class="card-content" (click)="showDialog()">
 
-        <div class="img-container">
-            <img src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="image">
-        </div>
-        <div class="text-container">
-            <mat-card-content>
-                <p>{{pokemon.name}}</p>
-                <p>#{{pokemon.id}}</p>
-                <p>Weight:{{pokemon.weight}}</p>
-                <p>Height:{{pokemon.height}}</p>
-                <ul>
-                    <li *ngFor="let thetype of pokemon.types">
-                        {{ thetype.type.name }}
-                    </li>
-                </ul>
-            </mat-card-content>
-        </div>
-
-
-    </mat-card>
-
-</div>
+    <div class="img-container">
+        <img src="{{pokemon.sprites.other['official-artwork'].front_default}}" alt="image">
+    </div>
+    <div class="text-container">
+        <mat-card-content>
+            <p>{{pokemon.name}}</p>
+            <p>#{{pokemon.id}}</p>
+            <p>Weight:{{pokemon.weight}}</p>
+            <p>Height:{{pokemon.height}}</p>
+            <ul>
+                <li *ngFor="let thetype of pokemon.types">
+                    {{ thetype.type.name }}
+                </li>
+            </ul>
+        </mat-card-content>
+    </div>
+</mat-card>

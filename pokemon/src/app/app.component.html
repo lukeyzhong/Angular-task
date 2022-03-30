@@ -3,5 +3,12 @@
     Kanto pokemon
   </p>
 </header>
+<div class="card-panel" >
+  <div *ngFor="let pokemon of pokemonlist">
+    <app-pokemon [pokemon]="pokemon" *ngIf="show || pokemon.name === selectedPokemon"></app-pokemon>
+  </div>
 
-<app-pokemon *ngIf="show || pokemon.name === selectedPokemon"></app-pokemon>
+</div>
+<div *ngIf="!show" >
+  <button (click)="onSetback()">Goback</button>
+</div>

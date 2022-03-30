@@ -3,6 +3,11 @@
     // margin: 0%;
 }
 
+.card-panel {
+    display: flex;
+    flex-direction: row;
+}
+
 header {
     width: 100%;
     height: 50px;
@@ -17,5 +22,7 @@ header p {
     padding-top: 10px;
     font-size: 30px;
 }
+
+
 
 

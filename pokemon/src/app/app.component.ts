@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { PokemonsService } from './pokemons.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   show: boolean = true;
+  selectedPokemon = '';
+  arr: any = [];
+  pokemonlist!: any;
+  // pokemonlist!: PokemonResponse[];
+  starterPokemon = ["bulbasaur", "squirtle", "charmander"];
 
-  constructor() {}
+  constructor(private pokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
+    this.pokemonsService.subjectSelected$.subscribe((data: any) => {
+      this.show = false;
+      this.selectedPokemon = data.name;
+      console.log(data.name);
+    })
     
+    for (let pokemonitem of this.starterPokemon) {
+      this.arr.push(this.pokemonsService.getPokemon(pokemonitem))
+    }
+
+    forkJoin(this.arr).subscribe((data: any) => {
+      this.pokemonlist = data;
+    })
   }
   title='';
+
+  onSetback() {
+    this.show = true;
+    this.pokemonsService.getReset();
+  }
 
 }
