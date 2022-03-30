@@ -1,6 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PokemonResponse } from '../pokemon.model';
 import { PokemonsService } from '../pokemons.service';
 
 @Component({

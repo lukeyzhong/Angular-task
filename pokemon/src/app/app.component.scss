@@ -6,6 +6,12 @@
 .card-panel {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin-left: 50%;
 }
 
 header {

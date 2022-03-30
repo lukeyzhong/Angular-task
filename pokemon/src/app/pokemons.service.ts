@@ -24,7 +24,7 @@ export class PokemonsService {
   }
 
   getReset() {
-    this.subjectSelected$ = new Subject();
+    this.subjectSelected$.next('');
   }
 
 

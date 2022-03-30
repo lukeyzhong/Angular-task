@@ -7,7 +7,7 @@ import { PokemonsService } from './pokemons.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   show: boolean = true;
   selectedPokemon = '';
   arr: any = [];
@@ -15,15 +15,21 @@ export class AppComponent implements OnInit{
   // pokemonlist!: PokemonResponse[];
   starterPokemon = ["bulbasaur", "squirtle", "charmander"];
 
-  constructor(private pokemonsService: PokemonsService) {}
+  constructor(private pokemonsService: PokemonsService) { }
 
   ngOnInit(): void {
     this.pokemonsService.subjectSelected$.subscribe((data: any) => {
-      this.show = false;
-      this.selectedPokemon = data.name;
+      if (data) {
+        this.show = false;
+        this.selectedPokemon = data.name;
+      } else {
+        this.show = true;
+        this.selectedPokemon = '';
+      }
+
       console.log(data.name);
     })
-    
+
     for (let pokemonitem of this.starterPokemon) {
       this.arr.push(this.pokemonsService.getPokemon(pokemonitem))
     }
@@ -32,10 +38,9 @@ export class AppComponent implements OnInit{
       this.pokemonlist = data;
     })
   }
-  title='';
+  title = '';
 
   onSetback() {
-    this.show = true;
     this.pokemonsService.getReset();
   }
 
