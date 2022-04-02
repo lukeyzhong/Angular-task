@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PokemonsService } from '../pokemons.service';
-import {MatDialog} from '@angular/material/dialog';
+
+import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Pokemon } from '../pokemon.model';
 
 @Component({
   selector: 'app-pokemon',
@@ -9,18 +10,17 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./pokemon.component.scss']
 })
 export class PokemonComponent implements OnInit {
-  @Input() pokemon: any;
-  constructor(private pokemonsService: PokemonsService,
-    public dialog: MatDialog) { }
+  @Input() pokemon!: any;
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-
   }
 
   showDialog() {
     this.dialog.open(DialogComponent, {
       width: '250px',
       data: this.pokemon
+      
     })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PokemonsService } from '../pokemons.service';
+import { Pokemon } from '../pokemon.model';
+import { PokemonsService } from '../services/pokemons.service';
 
 @Component({
   selector: 'app-dialog',
@@ -8,16 +9,14 @@ import { PokemonsService } from '../pokemons.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  selected!: any[];
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public pokemonData: any,
     private pokemonsService: PokemonsService) { }
 
   ngOnInit(): void {
-    
+    // console.log(this.pokemonData);
   }
-
   noChoose() {
     this.dialogRef.close();
   }
@@ -26,7 +25,7 @@ export class DialogComponent implements OnInit {
     // this.pokemonsService.show = false;
     this.pokemonsService.getSelect(item);
     // console.log(this.pokemonsService.subjectSelected$);
-    console.log(item);
+    // console.log(item);
     this.dialogRef.close();
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
-import { PokemonsService } from './pokemons.service';
+import { forkJoin, Observable } from 'rxjs';
+import { Pokemon } from './pokemon.model';
+import { PokemonsService } from './services/pokemons.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,6 @@ export class AppComponent implements OnInit {
   selectedPokemon = '';
   arr: any = [];
   pokemonlist!: any;
-  // pokemonlist!: PokemonResponse[];
   starterPokemon = ["bulbasaur", "squirtle", "charmander"];
 
   constructor(private pokemonsService: PokemonsService) { }
@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
         this.show = true;
         this.selectedPokemon = '';
       }
-
       console.log(data.name);
     })
 
@@ -36,8 +35,9 @@ export class AppComponent implements OnInit {
 
     forkJoin(this.arr).subscribe((data: any) => {
       this.pokemonlist = data;
-    })
+    });
   }
+
   title = '';
 
   onSetback() {

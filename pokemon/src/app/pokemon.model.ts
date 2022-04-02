@@ -9,15 +9,24 @@ export interface PokemonResponse {
     is_default: boolean;
     location_area_encounters: string;
     moves: Move[];
-    name: string;
     species: Specie;
     sprites: Sprite;
     stats: Stat[];
     types: Type[];
     weight: number;
   }
+
+// ~~~~~~~~~~~~~~~ create the interface for the data needed ~~~~~~~~~~~~~~~~~~~~~~~~~ 
+export interface Pokemon {
+  id: number;
+  height: number;
+  weight: number;
+  sprites: Sprite;
+  species: Specie;
+  types: Type[];
+}
   
-  
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
   export interface Ability {
     name: any;
     is_hidden: boolean;
