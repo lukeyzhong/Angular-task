@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   selectedPokemon = '';
   arr: any = [];
   pokemonlist!: any;
-  starterPokemon = ["bulbasaur", "squirtle", "charmander"];
+  starterPokemon = ["bulbasaur", "squirtle", "charmander", "butterfree"];
 
   constructor(private pokemonsService: PokemonsService) { }
 
@@ -21,18 +21,17 @@ export class AppComponent implements OnInit {
     this.pokemonsService.subjectSelected$.subscribe((data: any) => {
       if (data) {
         this.show = false;
-        this.selectedPokemon = data.name;
+        this.selectedPokemon = data.species.name;
       } else {
         this.show = true;
         this.selectedPokemon = '';
       }
-      console.log(data.name);
+      console.log(data);
     })
 
     for (let pokemonitem of this.starterPokemon) {
       this.arr.push(this.pokemonsService.getPokemon(pokemonitem))
     }
-
     forkJoin(this.arr).subscribe((data: any) => {
       this.pokemonlist = data;
     });

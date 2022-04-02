@@ -34,7 +34,7 @@ export class PokemonsService {
     
   }
     
-  getSelect(data: any) {
+  getSelect(data: Pokemon) {
     this.subjectSelected$.next(data);
     console.log(data);
   }

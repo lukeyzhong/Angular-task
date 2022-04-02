@@ -5,7 +5,7 @@
 </header>
 <div class="card-panel" >
   <div *ngFor="let pokemon of pokemonlist">
-    <app-pokemon [pokemon]="pokemon" *ngIf="show || pokemon.name === selectedPokemon"></app-pokemon>
+    <app-pokemon [pokemon]="pokemon" *ngIf="show || pokemon.species.name === selectedPokemon"></app-pokemon>
   </div>
 
 </div>
