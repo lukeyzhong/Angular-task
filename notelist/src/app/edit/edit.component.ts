@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -28,6 +28,7 @@ export class EditComponent implements OnInit, OnDestroy {
           // this.editMode = params['id'] != null;
           this.editMode = params['id'];
           this.initForm();
+          // console.log(params);
         }
       );
   }
@@ -38,10 +39,17 @@ export class EditComponent implements OnInit, OnDestroy {
   }
 
   onRevert() {
-    this.router.navigate([this.subscription2$ = this.route.params.subscribe((data: any)=>console.log(data))], {relativeTo: this.route});
+    // this.router.navigate(['', this.id]);
+    // this.router.navigate(['']);
+    // this.router.navigate(['add']);
+    
+    this.router.navigate(['/'], {skipLocationChange: true})
+    .then(() => { this.router.navigate(['', this.id]); });
     alert("the note has been reverted!");
-
   }
+  
+  
+
 
   onSubmit() {
     if (this.editMode) {
