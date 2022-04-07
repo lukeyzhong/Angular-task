@@ -1,0 +1,16 @@
+
+    <a class="item-container" 
+    style="cursor: pointer" 
+    [routerLink]="[index]" 
+    routerLinkAcitve="active">
+
+        <div >
+            <span>{{ note.name }}</span>
+            
+        </div>
+        <div>
+            <button (click)="onDeleteNote()" > X </button>
+        </div>
+        
+    </a>
+

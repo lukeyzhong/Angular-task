@@ -1,0 +1,22 @@
+.list-container {
+    
+    height: 300px;
+    width: 250px;
+    margin: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.lower-container {
+    border: dashed 1px;
+    margin: 0%;
+    height: 250px;
+    width: 100%;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+
+
