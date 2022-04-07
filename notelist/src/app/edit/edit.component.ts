@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { NotesService } from '../services/notes.service';
 
 @Component({
@@ -8,17 +9,19 @@ import { NotesService } from '../services/notes.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   id!: number;
   editMode = false;
   noteForm!: FormGroup;
+  subscription1$ = new Subscription();
+  subscription2$ = new Subscription();
 
   constructor(private notesService: NotesService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.route.params
+    this.subscription1$ = this.route.params
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
@@ -29,8 +32,13 @@ export class EditComponent implements OnInit {
       );
   }
 
+  ngOnDestroy(): void {
+    this.subscription1$.unsubscribe();
+    this.subscription2$.unsubscribe();
+  }
+
   onRevert() {
-    this.router.navigate([this.route.params], {relativeTo: this.route});
+    this.router.navigate([this.subscription2$ = this.route.params.subscribe((data: any)=>console.log(data))], {relativeTo: this.route});
     alert("the note has been reverted!");
 
   }
