@@ -1,0 +1,33 @@
+<div class="main-container">
+
+  <div class="header-container">
+    <h1>Validate your info</h1>
+  </div>
+  <div class="header-container">
+    <span>Hi there, let's confirm it is you</span>
+  </div>
+  <div class="header-container">
+    <span>Enter the patient's date of birth and zip code to start checkin</span>
+  </div>
+
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="birthday-container">
+      <label for="birthday">Patient date of birth</label> <br>
+      <input type="date" id="birthday" formControlName="birthday">
+      <div *ngIf="!birthday?.valid && (birthday?.dirty || birthday?.touched)"></div>
+    </div>
+
+    <div class="zipcode-container">
+      <label for="zipcode">Patient zipcode (5 digits)</label> <br>
+      <input type="number" id="zipcode" formControlName="zipcode">
+      <div *ngIf="!zipcode?.valid && (zipcode?.dirty || zipcode?.touched)"></div>
+    </div>
+
+    <div class="btn">
+      <button type="submit" class="submit-container" [disabled]="!form.valid">continue</button>
+    </div>
+  </form>
+
+
+</div>
