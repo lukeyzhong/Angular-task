@@ -33,6 +33,7 @@ export class PatientService {
         return console.log('correct!');
       } 
     }
+    return console.log('wrong!');
 
   }
 }
