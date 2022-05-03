@@ -34,12 +34,5 @@ export class PatientService {
       } 
     }
 
-
-    // this.database.forEach((ele: any) => {
-    //   if (ele.birthday === data.birthday && ele.zipcode === data.zipcode) {
-    //     return console.log('correct!')
-    //   } 
-    // });
-    return console.log('wrong!');
   }
 }
