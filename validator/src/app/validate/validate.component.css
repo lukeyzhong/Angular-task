@@ -1,0 +1,36 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid lightblue;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 30%;
+}
+
+.header-container {
+    border: 1px solid red;
+}
+
+.header-container h1 {
+    color: grey;
+}
+
+.header-container span {
+    color: rgb(109, 109, 219);
+}
+
+.btn {
+    margin: 2%;
+}
+button {
+    background-color: pink;
+    color: #666666;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}

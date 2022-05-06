@@ -1,5 +1,6 @@
-import { JsonPipe } from '@angular/common';
+
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +9,31 @@ export class PatientService {
 
   private database: any[] = [
     {
-      birthday: '1998-08-08',
-      zipcode: 88888
+      userInput: {
+        birthday: '1999-09-09',
+        zipcode: 99999
+      },
+      appointmentDetails: {
+        address: 'This Road, Apt 1',
+        appointmentDateTime: '5: 00 pm',
+        appointmentType: 'A',
+        city: 'OK',
+        clinicId: 'A1234',
+        email: 'abc@gmail.com',
+        firstName: 'Joe',
+        lastName: 'Hoff',
+        phoneNumber: '1231234',
+        state: 'OK',
+        zipCode: '73160',
+      }
     },
-    {
-      birthday: '1999-09-09',
-      zipcode: 99999
-    }
+
   ]
 
 
-  constructor() { }
+  constructor(private route: Router) { }
 
-  validateInfo(data: any) {
+  validateInfo(value: any) {
 
     // for (let ele of this.database) {
     //   if (ele.birthday === data.birthday && ele.zipcode === data.zipcode) {
@@ -28,12 +41,12 @@ export class PatientService {
     //   } 
     // }
 
-    for (let ele of this.database) {
-      if (JSON.stringify(ele) === JSON.stringify(data)) {
-        return console.log('correct!');
-      } 
+    for (let data of this.database) {
+      if (JSON.stringify(value) === JSON.stringify(data.userInput)) {
+        return this.route.navigateByUrl("verify");
+      }
     }
-    return console.log('wrong!');
+    return alert("please enter correct info!");
 
   }
 }
