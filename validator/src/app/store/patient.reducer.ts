@@ -12,7 +12,7 @@ const state: PatientState = {
             },
             appointmentDetails: {
                 address: 'This Road, Apt 1',
-                appointmentDateTime: '5: 00 pm',
+                appointmentDateTime: '5:00 pm',
                 appointmentType: 'A',
                 city: 'OK',
                 clinicId: 'A1234',
