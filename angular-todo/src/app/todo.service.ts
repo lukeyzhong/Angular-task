@@ -14,4 +14,8 @@ export class TodoService {
   getTodos(): Observable<any> {
     return this.http.get([this.baseurl, this.todoPath].join('/'));
   }
+
+  deleteTodo(id: string): Observable<any> {
+    return this.http.delete([this.baseurl, this.todoPath, id].join('/'));
+  }
 }

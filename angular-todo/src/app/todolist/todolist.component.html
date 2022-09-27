@@ -1,5 +1,12 @@
-<input type="text" >
-<div ngFor= "let todo of todolist">
-    <app-todoitem></app-todoitem>
-</div>
+<header class="header-container">
+    <span>My To Do List</span>
+</header>
+<input [(ngModel)]="inputTodo" />
 
+<ul>
+  <app-todoitem 
+  *ngFor="let todo of todolist" 
+  [todoitem]="todo"
+  (deleteId)="deletetodo($event)"
+  ></app-todoitem>
+</ul>

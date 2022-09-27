@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-todoitem',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todoitem.component.scss']
 })
 export class TodoitemComponent implements OnInit {
+  @Input() todoitem: any;
+  @Output() deleteId = new EventEmitter();
 
   constructor() { }
 
@@ -13,7 +16,7 @@ export class TodoitemComponent implements OnInit {
   }
 
   onDelete() {
-    // deletetodo
+    this.deleteId.emit(this.todoitem.id);
   }
 
 }

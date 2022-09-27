@@ -1,0 +1,17 @@
+:root {
+    --todolist-height: 450px;
+    --todolist-width: 600px;
+    --todolist-header-height: 40px;
+    --todolist-header-width: 550px;
+    --todolist-list-height: 50px;
+    --todolist-upper-height: 150px;
+
+    --todolist-header-input-col: lightblue;
+    --todolist-container-col: rgb(235, 231, 231);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
