@@ -1,2 +1,11 @@
-<span> {{todoitem.title}}<span>
-<button (click)="onDelete()">X</button>
+<li>
+    <span> {{todoitem.id}} - {{todoitem.title}}</span>
+        <button 
+        class="delete_btn" 
+        id="${todoitem.id}" 
+        (click)="onDelete()"
+        >X</button>
+</li>
+    
+
+
