@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
 
@@ -8,19 +9,20 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todolist.component.scss'],
 })
 export class TodolistComponent implements OnInit {
-  todolist: Todo[] = [];
+  // todolist: Todo[] = [];
   inputTodo: string = '';
+  // todos$!: Observable<any>;
 
-  constructor(private todoService: TodoService) {}
+
+  constructor(public todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.todoService.getTodos().subscribe((data) => {
-      this.todolist = data;
-    });
+    this.todoService.getTodos().subscribe();
+    // this.todos$ = this.todoService.todos$;
   }
 
   deletetodo(id: string) {
-    this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
+    // this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
     this.todoService.deleteTodo(id).subscribe();
   }
 
@@ -29,9 +31,7 @@ export class TodolistComponent implements OnInit {
       userId: 101,
       title: input,
     };
-    this.todoService.addTodo(newtodo).subscribe((data) => {
-      this.todolist = [data, ...this.todolist];
-    });
+    this.todoService.addTodo(newtodo).subscribe();
     this.inputTodo = '';
   }
 }

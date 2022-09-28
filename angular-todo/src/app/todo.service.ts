@@ -12,12 +12,13 @@ export class TodoService {
 
   private todolist: Todo[] = [];
   private todosSubject$ = new BehaviorSubject(this.todolist);
+  todos$ = this.todosSubject$.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  getTodolist() {
-    return this.todosSubject$.asObservable();
-  }
+  // getTodolist() {
+  //   return this.todosSubject$.asObservable();
+  // }
   
   getTodos(): Observable<any> {
     return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(

@@ -10,7 +10,7 @@
 
 <ul id="todolist__container">
   <app-todoitem
-    *ngFor="let todo of todolist"
+    *ngFor="let todo of todoService.todos$| async"
     [todoitem]="todo"
     (deleteId)="deletetodo($event)"
   ></app-todoitem>
