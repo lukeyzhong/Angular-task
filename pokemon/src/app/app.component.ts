@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   selectedPokemon = '';
   arr: any = [];
   pokemonlist!: any;
-  starterPokemon = ["bulbasaur", "squirtle", "charmander", "butterfree"];
+  starterPokemon = ["bulbasaur", "squirtle", "charmander"];
 
   constructor(private pokemonsService: PokemonsService) { }
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
         this.show = true;
         this.selectedPokemon = '';
       }
-      console.log(data);
+      // console.log(data);
     })
 
     for (let pokemonitem of this.starterPokemon) {
