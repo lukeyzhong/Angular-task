@@ -12,9 +12,9 @@ export class ItemComponent implements OnInit {
   @Input() index!: number;
   @Input() note!: Note;
   id!: number;
+
   constructor(private notesService: NotesService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params
@@ -25,8 +25,9 @@ export class ItemComponent implements OnInit {
     )
   }
 
-  onDeleteNote() {
-    this.notesService.deleteNote(this.id);
+  onDeleteNote(i: number) {
+    console.log(i);
+    this.notesService.deleteNote(i);
   }
 
 }

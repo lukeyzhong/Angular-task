@@ -1,16 +1,17 @@
 <div class="edit-card">
     <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
-        <div>
-            <button type="submit" [disabled]="!noteForm.valid">Save</button>
-            <button type="button" (click)="onRevert()">Revert</button>
-        </div>
-        <div>
+        
+        <p>
             <label for="name">Name</label>
             <input type="text" id="name" formControlName="name">
-        </div>
-        <div>
+        </p>
+        <p>
             <label for="description">Description</label>
             <textarea type="text" id="description" formControlName="description" rows="6"></textarea>
+        </p>
+        <div>
+            <button type="button" (click)="onRevert()">Revert</button>
+            <button type="submit" >Save</button>
         </div>
 
     </form>

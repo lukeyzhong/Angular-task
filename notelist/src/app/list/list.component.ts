@@ -24,17 +24,15 @@ export class ListComponent implements OnInit, OnDestroy {
           this.notes = data;
         }
       );
-    this.notes = this.notesService.getNotes();
+    // this.notes = this.notesService.getNotes();
   }
 
-  onNewNote() {
+  createNote() {
     this.router.navigate(['add'],  {relativeTo: this.route});
   }
 
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
-
-
 
 }

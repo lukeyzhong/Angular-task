@@ -9,14 +9,12 @@ export class NotesService {
   
   notesChanged$ = new Subject<Note[]>();
 
-  private notes: Note[] = [
-    // new Note('Note1', 'this is my note1'),
-  ];
+  private notes: Note[] = [];
 
   constructor() { }
 
   getNotes() {
-    return this.notes;
+    return this.notesChanged$;
   }
 
   getNote(index: number) {
@@ -25,16 +23,16 @@ export class NotesService {
 
   addNote(note: Note) {
     this.notes.push(note);
-    this.notesChanged$.next(this.notes.slice());
+    this.notesChanged$.next(this.notes);
   }
 
   updateNote(index: number, newNote: Note) {
     this.notes[index] = newNote;
-    this.notesChanged$.next(this.notes.slice());
+    this.notesChanged$.next(this.notes);
   }
 
   deleteNote(index: number) {
-    this.notes.splice(index, 1);
-    this.notesChanged$.next(this.notes.slice());
+    this.notes = this.notes.filter((_, i) => i !== index );
+    this.notesChanged$.next(this.notes);
   }
 }

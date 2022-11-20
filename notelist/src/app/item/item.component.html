@@ -1,6 +1,5 @@
 
     <a class="item-container" 
-    style="cursor: pointer" 
     [routerLink]="[index]" 
     routerLinkAcitve="active">
 
@@ -9,7 +8,7 @@
             
         </div>
         <div>
-            <button (click)="onDeleteNote()" > X </button>
+            <button (click)="onDeleteNote(index)"> X </button>
         </div>
         
     </a>

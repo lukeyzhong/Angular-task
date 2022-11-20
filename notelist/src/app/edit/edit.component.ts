@@ -21,6 +21,7 @@ export class EditComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
+    
     this.subscription1$ = this.route.params
       .subscribe(
         (params: Params) => {
@@ -48,8 +49,6 @@ export class EditComponent implements OnInit, OnDestroy {
     alert("the note has been reverted!");
   }
   
-  
-
 
   onSubmit() {
     if (this.editMode) {
