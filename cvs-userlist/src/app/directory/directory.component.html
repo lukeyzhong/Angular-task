@@ -1,1 +1,17 @@
-<p>directory works!</p>
+<div class="container">
+  <h1>CVS Users</h1>
+
+  <ul>
+    <li *ngFor="let user of users">
+      <div class="list-container">
+        <div>
+          <img src="{{ user.avatar }}" />
+        </div>
+        <div>
+          <p>{{ user.first_name }} {{ user.last_name }}</p>
+          <a href="url">{{ user.email }}</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
