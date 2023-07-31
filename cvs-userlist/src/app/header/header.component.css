@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    background-color: #eb0000;
+}
+
+header {
+    color: white;  
+    cursor: pointer;  
+}
+
+.right-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.right-container header {
+    padding: 20px;
+}
+
