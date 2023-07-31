@@ -1,25 +1,54 @@
 <div class="container">
   <h1>Contact us</h1>
 
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <form 
+  *ngIf="!selected else elseBlock"
+  [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <p>
       <label for="name">Name: </label>
+
       <input
+        class="name"
         type="text"
         id="name"
         name="name"
         formControlName="name"
       />
     </p>
+    <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+      First Name is not required
+    </div>
 
     <p>
       <label for="message">Message: </label>
       <input
+        class="message"
         type="text"
-        id="lastname"
+        id="message"
         name="message"
         formControlName="message"
       />
     </p>
+    <div *ngIf="!message?.valid && (message?.dirty || message?.touched)">
+      <div [hidden]="!message?.errors?.['required']">Name is required</div>
+      <div [hidden]="message?.errors?.['minLength']">Min length is 10</div>
+    </div>
+
+    <button type="submit" [disabled]="!contactForm.valid">Send Message</button>
   </form>
+
+  <ng-template #elseBlock>
+    <h2 style="color: green">Thank you for contacting us. We will be in touch shortly!</h2>
+    <hr>
+    <h4>You have submitted the following message:</h4>
+    <h5>Name:</h5>
+    <p>{{name?.value}}</p>
+    <h5>Message:</h5>
+    <p>{{message?.value}}</p>
+  </ng-template>
+
 </div>
+
+
+
+
