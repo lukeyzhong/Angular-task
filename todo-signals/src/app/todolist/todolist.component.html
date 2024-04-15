@@ -1,0 +1,24 @@
+<header class="todolist__header">
+  <span>My To Do List</span>
+</header>
+
+<input
+  class="todolist__input"
+  [(ngModel)]="inputTodo"
+  (keyup.enter)="addtodo(inputTodo)"
+/>
+
+<ul id="todolist__container" *ngFor="let todo of todos ">
+  <li>
+    <span> {{ todo.id }} - {{ todo.title }}</span>
+    <button
+      class="delete_btn"
+      id="${todoitem.id}"
+      (click)="deletetodo(todo.id)"
+    >
+      X
+    </button>
+  </li>
+</ul>
+
+
