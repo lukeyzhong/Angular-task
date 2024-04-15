@@ -8,8 +8,7 @@
   (keyup.enter)="addtodo(inputTodo)"
 />
 
-
-<ul id="todolist__container" >
+<ul id="todolist__container">
   <li *ngFor="let todo of todos$ | async">
     <span> {{ todo.title }}</span>
     <button
@@ -21,5 +20,3 @@
     </button>
   </li>
 </ul>
-
-
