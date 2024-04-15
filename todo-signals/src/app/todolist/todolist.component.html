@@ -8,9 +8,10 @@
   (keyup.enter)="addtodo(inputTodo)"
 />
 
-<ul id="todolist__container" *ngFor="let todo of todos ">
-  <li>
-    <span> {{ todo.id }} - {{ todo.title }}</span>
+
+<ul id="todolist__container" >
+  <li *ngFor="let todo of todos$ | async">
+    <span> {{ todo.title }}</span>
     <button
       class="delete_btn"
       id="${todoitem.id}"

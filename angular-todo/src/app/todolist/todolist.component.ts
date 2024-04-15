@@ -11,14 +11,14 @@ import { TodoService } from '../todo.service';
 export class TodolistComponent implements OnInit {
   // todolist: Todo[] = [];
   inputTodo: string = '';
-  // todos$!: Observable<any>;
+  todos$!: Observable<any>;
 
 
   constructor(public todoService: TodoService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos().subscribe();
-    // this.todos$ = this.todoService.todos$;
+    this.todos$ = this.todoService.todos$;
   }
 
   deletetodo(id: string) {

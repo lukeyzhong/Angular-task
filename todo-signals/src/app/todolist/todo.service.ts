@@ -37,7 +37,6 @@ export class TodoService {
   }
 
   addTodo(newtodo: Todo): Observable<Todo> {
-    // post<Todo>???
     return this.http
       .post<Todo>([this.baseurl, this.todoPath].join('/'), newtodo)
       .pipe(
