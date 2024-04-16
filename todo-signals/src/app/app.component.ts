@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TodolistComponent } from './todolist/todolist.component';
-import { TodosStore } from './store/todos.store';
+import { TodoStore } from './store/todos.store';
 
 
 @Component({
@@ -13,15 +13,12 @@ import { TodosStore } from './store/todos.store';
 })
 export class AppComponent implements OnInit{
 
-  store = inject(TodosStore);
+  todoStore = inject(TodoStore);
 
   ngOnInit(): void {
-    // the store will auto turn every single property to signal
-    // this.store.todos()
-
+    console.log(112);
+    this.todoStore.loadAll();
+    console.log(this.todoStore.todos());
   }
 
-  // loadTodos() {
-  //   this.store.loadAll();
-  // }
 }

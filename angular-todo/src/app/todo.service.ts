@@ -24,6 +24,7 @@ export class TodoService {
     return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
       tap((data: any) => {
         this.todolist = [...data];
+        console.log(this.todolist);
         this.todosSubject$.next(this.todolist);
       })
     );

@@ -16,14 +16,15 @@ export const TodoStore = signalStore(
   withState(initialState),
   withMethods((store, todoService = inject(TodoService)) => ({
     loadAll() {
-      const todos = todoService.todolistS();
-      patchState(store, { todos });
+    const todolist = todoService.todolistS();
+      patchState(store, { todos: todolist });
+      console.log('it is loaded');
     },
     deleteTodo(id: any) {
-      const todos = todoService
+      const todolist = todoService
         .todolistS()
         .filter((ele: any) => +ele.id !== +id);
-      patchState(store, { todos });
+      patchState(store, { todos: todolist });
     },
     addTodo(input: string) {
       const newtodo: any = {
@@ -31,8 +32,8 @@ export const TodoStore = signalStore(
         title: input,
       };
       todoService.addTodo(newtodo);
-      const todos = [newtodo, ...todoService.todolistS()];
-      patchState(store, { todos });
+      const todolist = [newtodo, ...todoService.todolistS()];
+      patchState(store, { todos: todolist });
     },
   }))
 );

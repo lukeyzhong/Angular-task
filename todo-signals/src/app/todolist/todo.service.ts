@@ -22,7 +22,8 @@ export class TodoService {
     this.http
       .get([this.baseurl, this.todoPath].join('/'))
       .pipe(tap((data: any) => this.todolistS.set([...data])))
-      .subscribe()
+      // .pipe(tap((data: any) => this.todolist = [...data]))
+      .subscribe(data => console.log('servicetodo'+ this.todolist))
   );
 
   // getTodos(): Observable<any> {
