@@ -5,16 +5,16 @@
 <input
   class="todolist__input"
   [(ngModel)]="inputTodo"
-  (keyup.enter)="addtodo(inputTodo)"
+  (keyup.enter)="todoStore.addTodo(inputTodo)"
 />
 
 <ul id="todolist__container">
-  <li *ngFor="let todo of todos$ | async">
+  <li *ngFor="let todo of todoStore.todos()">
     <span> {{ todo.title }}</span>
     <button
       class="delete_btn"
       id="${todoitem.id}"
-      (click)="deletetodo(todo.id)"
+      (click)="todoStore.deleteTodo(todo.id)"
     >
       X
     </button>

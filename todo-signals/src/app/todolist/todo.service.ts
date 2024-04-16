@@ -1,50 +1,46 @@
-import { Injectable } from '@angular/core';
+import { Injectable, effect, inject, signal } from '@angular/core';
 import { Todo } from './todo.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoService {
+  http = inject(HttpClient);
 
   baseurl = 'https://jsonplaceholder.typicode.com';
   todoPath = 'todos';
 
+  // private todosSubject$ = new BehaviorSubject(this.todolist);
+  // todos$ = this.todosSubject$.asObservable();
+
   private todolist: Todo[] = [];
-  private todosSubject$ = new BehaviorSubject(this.todolist);
-  todos$ = this.todosSubject$.asObservable();
+  todolistS = signal(this.todolist);
 
-  constructor(private http: HttpClient) {}
+  takeEffect = effect(() =>
+    this.http
+      .get([this.baseurl, this.todoPath].join('/'))
+      .pipe(tap((data: any) => this.todolistS.set([...data])))
+      .subscribe()
+  );
 
-  // getTodolist() {
-  //   return this.todosSubject$.asObservable();
+  // getTodos(): Observable<any> {
+  //   return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
+  //     tap((data: any) =>this.todolistS.set([...data]))
+  //   );
   // }
-  
-  getTodos(): Observable<any> {
-    return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
-      tap((data: any) => {
-        this.todolist = [...data];
-        this.todosSubject$.next(this.todolist);
-      })
-    );
-  }
 
-  deleteTodo(id: string): Observable<any> {
-    this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
-    this.todosSubject$.next(this.todolist);
-    return this.http.delete([this.baseurl, this.todoPath, id].join('/'));
-  }
+  // deleteTodo(id: string): Observable<any> {
+  //   this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
+  //   // this.todosSubject$.next(this.todolist);
+  //   return this.http.delete([this.baseurl, this.todoPath, id].join('/'));
+  // }
 
   addTodo(newtodo: Todo): Observable<Todo> {
-    return this.http
-      .post<Todo>([this.baseurl, this.todoPath].join('/'), newtodo)
-      .pipe(
-        tap((data: any) => {
-          console.log(data);
-          this.todolist = [data, ...this.todolist];
-          this.todosSubject$.next(this.todolist);
-        })
-      );
+    return this.http.post<Todo>(
+      [this.baseurl, this.todoPath].join('/'),
+      newtodo
+    );
   }
 }
