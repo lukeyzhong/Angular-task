@@ -23,10 +23,11 @@ export class TodolistComponent {
   todos = this.todoService.todolistS;
 
 
-  // ngOnInit(): void {
-  //   this.todoService.getTodos().subscribe();
-  //   this.todos = this.todoService.todolistS
-  // }
+  ngOnInit(): void {
+    // this.todoService.getTodos().subscribe();
+    // this.todos = this.todoService.todolistS
+    this.todoStore.loadAll();
+  }
 
   // deletetodo(id: any) {
   //   this.todoService.deleteTodo(id).subscribe();

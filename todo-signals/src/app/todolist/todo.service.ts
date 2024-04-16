@@ -18,19 +18,20 @@ export class TodoService {
   private todolist: Todo[] = [];
   todolistS = signal(this.todolist);
 
-  takeEffect = effect(() =>
-    this.http
-      .get([this.baseurl, this.todoPath].join('/'))
-      .pipe(tap((data: any) => this.todolistS.set([...data])))
-      // .pipe(tap((data: any) => this.todolist = [...data]))
-      .subscribe(data => console.log('servicetodo'+ this.todolist))
-  );
+  // takeEffect = effect(() =>
+  //   this.http
+  //     .get<any[]>([this.baseurl, this.todoPath].join('/'))
+  //     .pipe(tap((data: any[]) => {
+  //       this.todolist = [...data];
+  //     }))
+  //     .subscribe(data => console.log('servicetodo'+ JSON.stringify(this.todolist)))
+  // );
 
-  // getTodos(): Observable<any> {
-  //   return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
-  //     tap((data: any) =>this.todolistS.set([...data]))
-  //   );
-  // }
+  getTodos(): Observable<any> {
+    return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
+      tap((data: any) =>this.todolistS.set([...data]))
+    );
+  }
 
   // deleteTodo(id: string): Observable<any> {
   //   this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
