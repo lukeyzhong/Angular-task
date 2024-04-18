@@ -20,14 +20,13 @@ export class TodolistComponent {
   inputTodo: string = '';
   // todos$!: Observable<any>;
 
-  filter = viewChild.required<ElementRef>('filtering');
+  filterTag = viewChild.required<ElementRef>('filtering');
 
   constructor() {
     effect(() => {
-      const filter = this.filter();
+      const filter = this.filterTag();
       filter.nativeElement.value = this.todoStore.filter();
     })
-
   }
 
   ngOnInit(): void {
