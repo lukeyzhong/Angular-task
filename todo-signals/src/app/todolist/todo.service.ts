@@ -16,7 +16,7 @@ export class TodoService {
   // todos$ = this.todosSubject$.asObservable();
 
   private todolist: Todo[] = [];
-  todolistS = signal(this.todolist);
+  // todolistS = signal(this.todolist);
 
   // takeEffect = effect(() =>
   //   this.http
@@ -28,21 +28,21 @@ export class TodoService {
   // );
 
   getTodos(): Observable<any> {
-    return this.http.get([this.baseurl, this.todoPath].join('/')).pipe(
-      tap((data: any) =>this.todolistS.set([...data]))
-    );
+    return this.http.get([this.baseurl, this.todoPath].join('/'))
   }
 
-  // deleteTodo(id: string): Observable<any> {
-  //   this.todolist = this.todolist.filter((ele: any) => +ele.id !== +id);
-  //   // this.todosSubject$.next(this.todolist);
-  //   return this.http.delete([this.baseurl, this.todoPath, id].join('/'));
-  // }
+  deleteTodo(id: string): Observable<any> {
+    return this.http.delete([this.baseurl, this.todoPath, id].join('/'));
+  }
 
   addTodo(newtodo: Todo): Observable<Todo> {
     return this.http.post<Todo>(
       [this.baseurl, this.todoPath].join('/'),
       newtodo
     );
+  }
+
+  updateTodo(id: any, completed: boolean) {
+    
   }
 }

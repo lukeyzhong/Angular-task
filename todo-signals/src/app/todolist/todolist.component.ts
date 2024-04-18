@@ -1,15 +1,15 @@
-import { Component, Signal, inject, signal } from '@angular/core';
+import { Component, ElementRef, KeyValueChanges, Signal, effect, inject, signal, viewChild } from '@angular/core';
 import { TodoService } from './todo.service';
 import { FormsModule } from '@angular/forms'
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 import { Todo } from './todo.model';
 import { Observable } from 'rxjs';
-import { TodoStore } from '../store/todos.store';
+import { TodoStore, TodosFilter } from '../store/todos.store';
 
 @Component({
   selector: 'app-todolist',
   standalone: true,
-  imports: [FormsModule, NgFor, AsyncPipe],
+  imports: [FormsModule, NgFor, AsyncPipe, NgClass],
   templateUrl: './todolist.component.html',
   styleUrl: './todolist.component.css'
 })
@@ -19,9 +19,16 @@ export class TodolistComponent {
 
   inputTodo: string = '';
   // todos$!: Observable<any>;
- 
-  todos = this.todoService.todolistS;
 
+  filter = viewChild.required<ElementRef>('filtering');
+
+  constructor() {
+    effect(() => {
+      const filter = this.filter();
+      filter.nativeElement.value = this.todoStore.filter();
+    })
+
+  }
 
   ngOnInit(): void {
     // this.todoService.getTodos().subscribe();
@@ -33,13 +40,20 @@ export class TodolistComponent {
   //   this.todoService.deleteTodo(id).subscribe();
   // }
 
-  // addtodo(input: string) {
-  //   const newtodo: any = {
-  //     userId: 101,
-  //     title: input,
-  //   };
-  //   this.todoService.addTodo(newtodo).subscribe();
-  //   this.inputTodo = '';
-  // }
+  addtodo(input: string) {
+    this.todoStore.addTodo(input)
+    this.inputTodo = '';
+  }
+
+  toggleTodo(id: any, completed: boolean) {
+    completed = !completed;
+    console.log(completed);
+    this.todoStore.updateTodo(id, completed);
+  }
+
+  onFilter(event: Event) {
+    const filter = (event.target as HTMLSelectElement).value as TodosFilter
+    this.todoStore.udpateFilter(filter);
+  }
 
 }

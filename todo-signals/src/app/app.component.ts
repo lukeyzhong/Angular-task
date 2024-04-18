@@ -16,9 +16,6 @@ export class AppComponent implements OnInit{
   todoStore = inject(TodoStore);
 
   ngOnInit(): void {
-    // console.log(112);
-    // this.todoStore.loadAll();
-    // console.log(this.todoStore.todos());
   }
 
 }

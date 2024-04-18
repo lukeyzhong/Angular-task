@@ -6,7 +6,16 @@
     border-radius: 5px;
     box-shadow: 2px 2px 2px black;
   }
-  
+
+  .completed {
+    text-decoration: line-through;
+  }
+
+  select {
+    display: flex;
+    justify-content: center; 
+  }
+
   .todolist__header,
   .todolist__input,
   ul li {
@@ -26,7 +35,7 @@
     font-size: 1.3rem;
   }
   ul {
-    height: calc(var(--height-todolist) - var(--height-todolist-header) * 2);
+    height: calc(var(--height-todolist) - var(--height-todolist-header) * 3);
     overflow: auto;
   }
   
@@ -61,7 +70,7 @@
     font-size: 1.5rem;
   }
   li button:hover {
-    font-size: 1.6rem;
+    font-size: 2.3rem;
   }
   li button:active {
     font-size: 1.3rem;
