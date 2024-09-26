@@ -13,12 +13,15 @@ export class TodolistComponent implements OnInit {
   inputTodo: string = '';
   todos$!: Observable<any>;
 
-
   constructor(public todoService: TodoService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos().subscribe();
     this.todos$ = this.todoService.todos$;
+  }
+
+  gettodo() {
+    this.todoService.getTodo().subscribe();
   }
 
   deletetodo(id: string) {
@@ -28,8 +31,21 @@ export class TodolistComponent implements OnInit {
 
   addtodo(input: string) {
     const newtodo: any = {
-      userId: 101,
-      title: input,
+      type: [
+        {
+          target_id: 'to_do',
+        },
+      ],
+      title: [
+        {
+          value: input,
+        },
+      ],
+      field_content: [
+        {
+          value: 'test',
+        },
+      ],
     };
     this.todoService.addTodo(newtodo).subscribe();
     this.inputTodo = '';

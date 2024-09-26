@@ -16,7 +16,7 @@ export class TodoitemComponent implements OnInit {
   }
 
   onDelete() {
-    this.deleteId.emit(this.todoitem.id);
+    this.deleteId.emit(this.todoitem.nid);
   }
 
 }

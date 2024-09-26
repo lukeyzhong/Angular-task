@@ -1,5 +1,5 @@
 export interface Todo {
-    userId: string;
     title: string;
-    id?: number;
+    field_content: string;
+    nid?: number;
 }
